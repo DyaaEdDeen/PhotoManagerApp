@@ -1,6 +1,7 @@
 package com.blackdiamond.myapplication
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
@@ -22,7 +23,7 @@ class SplashActivity : AppCompatActivity() {
                 if (!checkSelfPermission()) {
                     requestPermission()
                 } else {
-                    loadImages()
+                    goToMainActivity()
                 }
             }, splashTimeOut.toLong()
         )
@@ -49,17 +50,19 @@ class SplashActivity : AppCompatActivity() {
         if(requestCode == 9999){
             if(grantResults.isNotEmpty()){
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    loadImages()
+                    goToMainActivity()
                 }else{
                     Toast.makeText(this,"Permission was denied, cant load the images!",Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    private fun loadImages() {
-        Toast.makeText(this,"I have Permission !",Toast.LENGTH_SHORT).show()
+    private fun goToMainActivity() {
+        val intent= Intent(this,MainActivity::class.java)
+        startActivity(intent)
     }
 
 }
