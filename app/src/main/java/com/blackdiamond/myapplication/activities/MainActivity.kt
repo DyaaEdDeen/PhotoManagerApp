@@ -1,7 +1,8 @@
-package com.blackdiamond.myapplication
+package com.blackdiamond.myapplication.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.blackdiamond.myapplication.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

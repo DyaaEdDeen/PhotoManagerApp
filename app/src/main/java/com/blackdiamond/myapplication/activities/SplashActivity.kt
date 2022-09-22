@@ -1,4 +1,4 @@
-package com.blackdiamond.myapplication
+package com.blackdiamond.myapplication.activities
 
 import android.Manifest
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.blackdiamond.myapplication.R
 
 class SplashActivity : AppCompatActivity() {
 
@@ -61,7 +62,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun goToMainActivity() {
-        val intent= Intent(this,MainActivity::class.java)
+        val intent= Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
