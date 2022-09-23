@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.blackdiamond.myapplication.R
+import com.blackdiamond.myapplication.adapters.AlbumAdapter
 import com.blackdiamond.myapplication.dataClasses.Album
 
 class MainActivity : AppCompatActivity() {
@@ -12,10 +15,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d("galleryApp","${GetIMageAlbums()}")
+        val albumAdapter = AlbumAdapter(getImageAlbums())
+        val rvAlbum = findViewById<RecyclerView>(R.id.rvAlbums)
+        rvAlbum.adapter = albumAdapter
+        rvAlbum.layoutManager = GridLayoutManager(this,3)
+
+
     }
 
-    private fun GetIMageAlbums() : ArrayList<Album>{
+    private fun getImageAlbums() : ArrayList<Album>{
         var albums : ArrayList<Album> = ArrayList()
 
         val imageProjection = arrayOf(
