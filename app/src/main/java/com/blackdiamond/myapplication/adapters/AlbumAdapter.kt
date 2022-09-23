@@ -1,5 +1,6 @@
 package com.blackdiamond.myapplication.adapters
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.blackdiamond.myapplication.R
+import com.blackdiamond.myapplication.activities.AlbumView
 import com.blackdiamond.myapplication.dataClasses.Album
+import com.squareup.picasso.Picasso
+import java.io.File
 
 class AlbumAdapter(private val albums: ArrayList<Album>) :
     RecyclerView.Adapter<AlbumAdapter.AlbumViewHolder>() {
@@ -31,9 +35,13 @@ class AlbumAdapter(private val albums: ArrayList<Album>) :
         val albumTitle = holder.itemView.findViewById<TextView>(R.id.tvAlbumName)
         val albumCover = holder.itemView.findViewById<ImageView>(R.id.ivAlbumCover)
         albumTitle.text = curAlbum.folderName
-        albumCover.setImageURI(Uri.parse(curAlbum.imagePaths[0]))
+        val img = File(curAlbum.imagePaths[0])
+        Picasso.get().load(img).placeholder(R.drawable.image_place_holder).into(albumCover)
         albumCover.setOnClickListener {
-            Toast.makeText(holder.itemView.context,"u clicked on ${curAlbum.folderName}",Toast.LENGTH_SHORT).show()
+            val intent = Intent(holder.itemView.context,AlbumView::class.java)
+            intent.putExtra("imgs",curAlbum.imagePaths)
+            intent.putExtra("albumName",curAlbum.folderName)
+            holder.itemView.context.startActivity(intent)
         }
     }
 

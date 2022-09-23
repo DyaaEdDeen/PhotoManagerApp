@@ -17,14 +17,14 @@
         android:theme="@style/Theme.PhotoManager"
         tools:targetApi="31">
         <activity
-            android:name=".ImageView"
+            android:name=".activities.ImageViewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AlbumView"
+            android:name=".activities.AlbumView"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

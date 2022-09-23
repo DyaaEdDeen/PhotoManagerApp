@@ -1,13 +1,16 @@
 package com.blackdiamond.myapplication.adapters
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.blackdiamond.myapplication.R
+import com.blackdiamond.myapplication.activities.ImageViewActivity
+import com.squareup.picasso.Picasso
+import java.io.File
 
 class ImageAdapter (private val imgs: ArrayList<String>):
     RecyclerView.Adapter<ImageAdapter.ImageViewHolder>() {
@@ -27,9 +30,12 @@ class ImageAdapter (private val imgs: ArrayList<String>):
         override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
             val curPhoto = imgs[position]
             val photo = holder.itemView.findViewById<ImageView>(R.id.ivImage)
-            photo.setImageURI(Uri.parse(curPhoto))
+            val img = File(curPhoto)
+            Picasso.get().load(img).placeholder(R.drawable.image_place_holder).into(photo)
             photo.setOnClickListener {
-                Toast.makeText(holder.itemView.context,"u clicked on $curPhoto", Toast.LENGTH_SHORT).show()
+                val intent = Intent(holder.itemView.context, ImageViewActivity::class.java)
+                intent.putExtra("photo",curPhoto)
+                holder.itemView.context.startActivity(intent)
             }
         }
 
