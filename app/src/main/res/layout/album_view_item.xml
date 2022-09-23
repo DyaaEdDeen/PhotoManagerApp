@@ -8,6 +8,7 @@
     android:layout_margin="3dp"
     android:elevation="8dp"
     app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="?attr/colorPrimaryVariant"
     >
 
     <LinearLayout
@@ -27,14 +28,15 @@
         <TextView
             android:id="@+id/tvAlbumName"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
             android:text="Album Title"
-            android:textStyle="bold"/>
+            android:textColor="?attr/colorOnPrimary"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
