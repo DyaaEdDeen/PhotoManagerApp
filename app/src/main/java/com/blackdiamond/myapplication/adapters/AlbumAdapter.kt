@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.blackdiamond.myapplication.R
 import com.blackdiamond.myapplication.dataClasses.Album
@@ -31,6 +32,9 @@ class AlbumAdapter(private val albums: ArrayList<Album>) :
         val albumCover = holder.itemView.findViewById<ImageView>(R.id.ivAlbumCover)
         albumTitle.text = curAlbum.folderName
         albumCover.setImageURI(Uri.parse(curAlbum.imagePaths[0]))
+        albumCover.setOnClickListener {
+            Toast.makeText(holder.itemView.context,"u clicked on ${curAlbum.folderName}",Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {
