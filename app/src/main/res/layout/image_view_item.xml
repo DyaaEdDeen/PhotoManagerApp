@@ -7,14 +7,15 @@
     android:layout_gravity="center"
     android:layout_margin="3dp"
     android:elevation="8dp"
-    app:cardCornerRadius="8dp">
+    app:cardCornerRadius="16dp"
+    >
 
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:scaleType="centerCrop"
-        android:background="@color/white"/>
+        android:src="@drawable/image_place_holder"
+        android:scaleType="centerCrop"/>
 
 </androidx.cardview.widget.CardView>

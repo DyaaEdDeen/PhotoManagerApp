@@ -13,6 +13,7 @@ import com.blackdiamond.myapplication.R
 import com.blackdiamond.myapplication.activities.AlbumView
 import com.blackdiamond.myapplication.dataClasses.Album
 import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.io.File
 
 class AlbumAdapter(private val albums: ArrayList<Album>) :
@@ -36,7 +37,13 @@ class AlbumAdapter(private val albums: ArrayList<Album>) :
         val albumCover = holder.itemView.findViewById<ImageView>(R.id.ivAlbumCover)
         albumTitle.text = curAlbum.folderName
         val img = File(curAlbum.imagePaths[0])
-        Picasso.get().load(img).placeholder(R.drawable.image_place_holder).into(albumCover)
+        Picasso.get().load(img)
+            .placeholder(R.drawable.image_place_holder)
+            .fit()
+            .centerCrop()
+            .transform(RoundedCornersTransformation(16, 0,
+                RoundedCornersTransformation.CornerType.TOP))
+            .into(albumCover)
         albumCover.setOnClickListener {
             val intent = Intent(holder.itemView.context,AlbumView::class.java)
             intent.putExtra("imgs",curAlbum.imagePaths)

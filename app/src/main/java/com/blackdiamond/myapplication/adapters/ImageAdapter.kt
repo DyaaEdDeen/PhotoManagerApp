@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blackdiamond.myapplication.R
 import com.blackdiamond.myapplication.activities.ImageViewActivity
 import com.squareup.picasso.Picasso
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import java.io.File
 
 class ImageAdapter (private val imgs: ArrayList<String>):
@@ -31,7 +32,15 @@ class ImageAdapter (private val imgs: ArrayList<String>):
             val curPhoto = imgs[position]
             val photo = holder.itemView.findViewById<ImageView>(R.id.ivImage)
             val img = File(curPhoto)
-            Picasso.get().load(img).placeholder(R.drawable.image_place_holder).into(photo)
+            Picasso.get().load(img)
+                .placeholder(R.drawable.image_place_holder)
+                .fit()
+                .centerCrop()
+                .transform(
+                    RoundedCornersTransformation(16, 0,
+                    RoundedCornersTransformation.CornerType.ALL)
+                )
+                .into(photo)
             photo.setOnClickListener {
                 val intent = Intent(holder.itemView.context, ImageViewActivity::class.java)
                 intent.putExtra("photo",curPhoto)
